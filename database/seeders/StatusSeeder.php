@@ -15,23 +15,17 @@ class StatusSeeder extends Seeder
     {
         DB::table('status')->insert([
             [
-                'name' => 'Waiting',
-                'description' => 'Waiting',
+                'name' => 'Payment',
+                'description' => '-',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Process',
-                'description' => 'Process',
+                'name' => 'Not Payment',
+                'description' => '-',
                 'created_at' => now(),
                 'updated_at' => now(),
 
-            ],
-            [
-                'name' => 'Finish',
-                'description' => 'Finish',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
         ]);
     }
