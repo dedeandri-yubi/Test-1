@@ -15,10 +15,10 @@ class OrderItemsController extends Controller
     public function index(Request $request)
     {
         $search = '%'.$request->query('search').'%';
-            $order_items = OrderItems::with('product:id,name,price','order_status','order_status.status')-> whereHas('product', function ($query) use ($search) {
+            $order_items = OrderItems::with('product:id,name,price','order_status','order_status.status')->whereHas('product', function ($query) use ($search) {
                 $query->where('name', 'like', $search);
             })
-            ->latest()->paginate(10);
+            ->latest('quantity')->paginate(10);
         return view('transaction.Order.index',compact('order_items'));
     }
 

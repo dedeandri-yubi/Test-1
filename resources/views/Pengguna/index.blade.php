@@ -31,8 +31,8 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <label for="">Name</label>
-                                        <input type="text" class="form-control" value="{{ auth()->user()->name }}"
+                                        <label for="">Full Name</label>
+                                        <input type="text" class="form-control" value="{{ auth()->user()->full_name }}"
                                             required autocomplete="off" readonly>
                                     </div>
                                     <div class="col-lg-4">
@@ -41,21 +41,21 @@
                                             required autocomplete="off" readonly>
                                     </div>
                                     <div class="col-lg-4">
-                                        <label for="nomor_telepon">Nomor Telepon</label>
-                                        <input type="text" name="nomor_telepon"
-                                            value="{{ auth()->user()->nomor_telepon }}" class="form-control" required
-                                            autocomplete="off" readonly>
+                                        <label for="phone">Phone</label>
+                                        <input type="text" name="phone" value="{{ auth()->user()->phone }}"
+                                            class="form-control" required autocomplete="off" readonly>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-lg-4">
-                                        <label for="">Nomor Sim</label>
-                                        <input type="text" value="{{ auth()->user()->nomor_sim }}" class="form-control"
-                                            required autocomplete="off" readonly>
+                                        <label for="date_of_birth">Date Of Birth</label>
+                                        <input type="date" class="form-control"
+                                            value="{{ auth()->user()->date_of_birth }}" required autocomplete="off"
+                                            readonly>
                                     </div>
                                     <div class="col-lg-4">
-                                        <label for="alamat">Alamat</label>
-                                        <textarea name="alamat" class="form-control" required readonly>{{ auth()->user()->alamat }}</textarea>
+                                        <label for="alamat">Address</label>
+                                        <textarea name="alamat" class="form-control" required readonly>{{ auth()->user()->address }}</textarea>
                                     </div>
                                 </div>
                                 <div class="row mt-3">

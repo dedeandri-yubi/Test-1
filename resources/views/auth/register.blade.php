@@ -6,23 +6,22 @@
         <div class="register-box">
             <div class="register-logo">
                 <b>Lawson Indonesia</b>
+                {{-- @dump($errors) --}}
             </div>
 
             <div class="card">
                 <div class="card-body register-card-body">
-                    <p class="login-box-msg">Penyewaan Mobil</p>
-
                     <form action="{{ route('register') }}" method="post">
                         @csrf
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                                placeholder="Full name" name="name" value="{{ old('name') }}">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="full_name"
+                                placeholder="Full Name" name="full_name" value="{{ old('full_name') }}" autocomplete="off">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
                                 </div>
                             </div>
-                            @error('name')
+                            @error('full_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -30,7 +29,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                                placeholder="Email" name="email" value="{{ old('email') }}">
+                                placeholder="Email" name="email" value="{{ old('email') }}" autocomplete="off">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-envelope"></span>
@@ -43,43 +42,43 @@
                             @enderror
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control @error('nomor_telepon') is-invalid @enderror"
-                                name="nomor_telepon" placeholder="No Telepon" name="nomor_telepon"
-                                value="{{ old('nomor_telepon') }}">
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone"
+                                placeholder="Phone" name="phone" value="{{ old('phone') }}">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-phone"></span>
                                 </div>
                             </div>
-                            @error('nomor_telepon')
+                            @error('phone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat"
-                                placeholder="Alamat" name="alamat" value="{{ old('alamat') }}">
+                            <input type="date" class="form-control @error('date_of_birth') is-invalid @enderror"
+                                name="date_of_birth" placeholder="Date Of Birth" name="date_of_birth"
+                                value="{{ old('date_of_birth') }}">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fa-solid fa-house"></span>
+                                </div>
+                            </div>
+                            @error('date_of_birth')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control @error('address') is-invalid @enderror" name="address"
+                                placeholder="Address" name="address" value="{{ old('address') }}">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-map-marker-alt"></span>
                                 </div>
                             </div>
-                            @error('alamat')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control @error('nomor_sim') is-invalid @enderror"
-                                name="nomor_sim" placeholder="Nomor SIM" name="nomor_sim" value="{{ old('nomor_sim') }}">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-id-card"></span>
-                                </div>
-                            </div>
-                            @error('nomor_sim')
+                            @error('address')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -125,17 +124,6 @@
                         </div>
                     </form>
 
-                    <div class="social-auth-links text-center">
-                        <p>- OR -</p>
-                        <a href="#" class="btn btn-block btn-primary">
-                            <i class="fab fa-facebook mr-2"></i>
-                            Sign up using Facebook
-                        </a>
-                        <a href="#" class="btn btn-block btn-danger">
-                            <i class="fab fa-google-plus mr-2"></i>
-                            Sign up using Google+
-                        </a>
-                    </div>
                     @if (Route::has('login'))
                         <a href="{{ route('login') }}" class="text-center">I already have a membership</a>
                     @endif

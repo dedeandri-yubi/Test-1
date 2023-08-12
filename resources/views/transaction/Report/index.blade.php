@@ -30,12 +30,12 @@
                             <div class="card-body">
                                 <form method="GET">
                                     <div class="row">
-                                        <div class="col-lg-3">
+                                        <div class="col-md-2">
                                             <label for="date">Date</label>
                                             <input type="date" id="date" name="date"
                                                 value="{{ request()->get('date') }}" class="form-control">
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-md-3">
                                             <label for="product">Product</label>
                                             <select name="product_id" class="form-control">
                                                 <option value="">-- Choose Product --</option>
@@ -57,13 +57,16 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-lg-1">
+                                        <div class="col-lg-2">
                                             <br>
-                                            <button type="submit" class="btn btn-info mt-2" id="button-addon2">Search</button>
+                                            <button type="submit" class="btn btn-info mt-2"
+                                                id="button-addon2">Search</button>
+                                            <a href="/report" class="btn btn-danger mt-2">Clear</a>
                                         </div>
                                         <div class="col-lg-2">
                                             <br>
-                                            <a href="{{ route('report.export.excel') }}" class="btn btn-success mt-2"><i
+                                            <a href="{{ route('report.export.excel') }}"
+                                                class="btn btn-success mt-2 float-right"><i
                                                     class="nav-icon fas fa-file-excel"></i> Export Excell</a>
                                         </div>
                                     </div>
@@ -74,7 +77,9 @@
                                             <th>No</th>
                                             <th>Product Name</th>
                                             <th>Date</th>
+                                            <th>Price</th>
                                             <th>Quantity</th>
+                                            <th>Total</th>
                                             <th>City</th>
                                             <th>Status</th>
                                             <th>User</th>
@@ -86,7 +91,9 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $sw->product->name }}</td>
                                                 <td>{{ $sw->date }}</td>
+                                                <td>{{ number_format($sw->product->price) }}</td>
                                                 <td>{{ $sw->quantity }}</td>
+                                                <td>{{ number_format($sw->product->price * $sw->quantity) }}</td>
                                                 <td>{{ $sw->product->merchant->city->name }}</td>
                                                 <td>{{ $sw->order_status->status->name }}</td>
                                                 <td>{{ $sw->user->name }}</td>
@@ -100,7 +107,7 @@
 
                                     </tbody>
                                 </table>
-                                {{ $report->withQueryString()->links('pagination::bootstrap-5') }}
+                                {{ $report->links('pagination::bootstrap-5') }}
                             </div>
                         </div>
                     </div>

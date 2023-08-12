@@ -27,7 +27,3 @@ Route::resource('city', App\Http\Controllers\CityController::class);
 Route::resource('product', App\Http\Controllers\ProductController::class);
 Route::resource('order_items', App\Http\Controllers\OrderItemsController::class)->middleware('auth');
 Route::resource('report', App\Http\Controllers\ReportController::class)->middleware('auth');
-// Route::get('report-export-excel', [App\Http\Controllers\ReportController::class, 'export'])
-Route::resource('cars', App\Http\Controllers\CarController::class);
-Route::resource('peminjaman', App\Http\Controllers\Transaction\PeminjamanController::class);
-Route::resource('pengembalian', App\Http\Controllers\Transaction\PengembalianController::class);

@@ -199,7 +199,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <li class="nav-item">
                                     <a href="/pengguna" class="nav-link">
                                         <i class="fas fa-users nav-icon"></i>
-                                        <p>List Pengguna</p>
+                                        <p>List Users</p>
                                     </a>
                                 </li>
                             </ul>

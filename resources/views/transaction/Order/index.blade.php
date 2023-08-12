@@ -57,6 +57,7 @@
                                             <th>Date</th>
                                             <th>Price</th>
                                             <th>Quantity</th>
+                                            <th>Total</th>
                                             <th>Status</th>
                                             <th>User</th>
                                             <th>Action</th>
@@ -70,15 +71,14 @@
                                                 <td>{{ $sw->date }}</td>
                                                 <td>{{ number_format($sw->product->price) }}</td>
                                                 <td>{{ $sw->quantity }}</td>
-                                                <td>
-                                                        {{ $sw->order_status->status->name }}
-                                                    {{-- {{ $sw->order_status->status->name }}</td> --}}
+                                                <td>{{ number_format($sw->product->price * $sw->quantity) }}</td>
+                                                <td> {{ $sw->order_status->status->name }} </td>
                                                 <td>{{ $sw->user->name }}</td>
                                                 <td>
                                                     <a href="{{ route('order_items.edit', $sw->id) }}"
                                                         class="btn btn-warning">Edit</a>
-                                                    <form action="{{ route('order_items.destroy', $sw->id) }}" method="POST"
-                                                        class="d-inline">
+                                                    <form action="{{ route('order_items.destroy', $sw->id) }}"
+                                                        method="POST" class="d-inline">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit" class="btn btn-danger"

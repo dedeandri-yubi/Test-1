@@ -16,7 +16,7 @@ class OrderItemsExport implements FromQuery, WithHeadings, WithMapping
     public function query()
     {
         $search = '%' . request()->query('search') . '%';
-        $report = OrderItems::with('product:id,name,merchant_id', 'product.merchant:id,city_id,name', 'product.merchant.city')->whereHas('product', function ($query) use ($search) {
+        $report = OrderItems::with('product:id,name,price,merchant_id', 'product.merchant:id,city_id,name', 'product.merchant.city')->whereHas('product', function ($query) use ($search) {
             $query->where('name', 'like', $search);
         });
 
@@ -28,7 +28,9 @@ class OrderItemsExport implements FromQuery, WithHeadings, WithMapping
         return [
             'Product',
             'Date',
+            'Price',
             'Quantity',
+            'Total',
             'City',
             'Status',
             'User'
@@ -40,7 +42,9 @@ class OrderItemsExport implements FromQuery, WithHeadings, WithMapping
         return [
             $row->product->name,
             $row->date,
-            $row->quantity,
+            $row->product->price ?? 0,
+            $row->quantity ?? 0,
+            $row->product->price * $row->quantity ?? 0,
             $row->product->merchant->city->name,
             $row->order_status->status->name,
             $row->user->name,

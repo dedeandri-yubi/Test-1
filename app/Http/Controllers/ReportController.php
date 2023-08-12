@@ -14,10 +14,23 @@ class ReportController extends Controller
         $product = Product::with('merchant:id,city_id,name','merchant.city')->select('id','merchant_id','name')->get();
         $city = City::select('id','name')->get();
         $search = '%'.$request->query('search').'%';
-            $report = OrderItems::with('product:id,name,merchant_id','product.merchant:id,city_id,name','product.merchant.city')-> whereHas('product', function ($query) use ($search) {
+            $report = OrderItems::with('product:id,name,price,merchant_id','product.merchant:id,city_id,name','product.merchant.city')
+            ->when($request->get('date'),function($q){
+                $q->whereDate('date',request()->get('date'));
+
+            })
+            ->when($request->get('city_id'),function($q){
+                $q->whereHas('product.merchant.city',function($q){
+                    $q->where('id',request()->get('city_id'));
+                });
+            })
+            ->when($request->get('product_id'), function($q){
+                $q->where('product_id',request()->get('product_id'));
+            })
+            -> whereHas('product', function ($query) use ($search) {
                 $query->where('name', 'like', $search);
             })
-            ->latest()->paginate(10);
+            ->latest('quantity')->paginate(10)->withQueryString();
 
         return view('transaction.Report.index',compact('report','product','city'));
     }
