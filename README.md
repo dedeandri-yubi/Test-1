@@ -7,6 +7,7 @@
 - Rename or copy `.env.example` file to `.env`
 - Run `php artisan key:generate`
 - Set your database credentials in your `.env` file
+- Set in DB_DATABASE name 'test' in .env
 - Run `npm i`
 - Run `npm run dev`
 - Run migration `php artisan migrate`
